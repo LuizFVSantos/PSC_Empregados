@@ -1,0 +1,102 @@
+import java.util.List;
+
+public class Empregado {
+    private String nome;
+    private int idade;
+    private double salario;
+
+    public Empregado(String nome, int idade, double salario){
+        this.nome=nome;
+        this.idade=idade;
+        this.salario=salario;
+    }
+// get and set
+    public String getNome(){
+        return nome;
+    }
+    
+    public void setNome(String nome){
+        this.nome=nome;
+    }
+
+    public int getIdade(){
+        return idade;
+    }
+    
+    public void setIdade(int idade){
+        this.idade=idade;
+    }
+    
+    public double getSalario(){
+        return salario;
+    }
+    
+    public void setSalario(double salario){
+        this.salario=salario;
+    }
+
+    @Override
+    public String toString() {
+        return "Empregado:" +
+                "nome='" + this.nome + '\'' +
+                ", idade=" + this.idade +
+                ", salario=" + this.salario;
+    }
+// metodo find
+    public static Empregado encEmpregado (List <Empregado> empregados, String nome){
+        for (Empregado emp : empregados) {
+            if (emp.getNome().equals(nome))
+            return emp;     
+        }
+        System.out.println("Empregado não cadastrado");
+        return null;
+    }
+// metodo promover
+    public void promover(){
+        if (idade>=18){
+            aumentarSalario(25);
+        }else{
+            System.out.println("O funcionario deve ter mais que 18 anos para receber promoção");
+        }
+    }   
+// metodo aumento de salario
+
+    public void aumentarSalario(double percentual){
+        this.salario+=(this.salario *(percentual/100));
+        System.out.println("Concluido com sucesso, novo salario é :"+this.salario);
+    }
+
+// metodo demitir
+    public void demitirEmpregado(int motivo){
+        switch(motivo){
+            case 1:
+                System.out.println("O empregado deve cumprir aviso prévio");
+            break;
+            case 2:
+                double acerto;
+                acerto = this.salario += (this.salario*0.4);
+            System.out.println("O valor do acerto é: " + acerto);
+            break;
+            case 3:
+                if (this.salario<1000){
+                System.out.println("Sem aposentadoria");
+                }else if (this.salario<2000){
+                System.out.println("Aposentadoria de R$1500,00");
+                }else if (this.salario<3000){
+                System.out.println("Aposentadoria de R$2500,00");   
+                }else if (this.salario<4000){
+                System.out.println("Aposentadoria de R$3500,00");     
+                }else{
+                System.out.println("Aposentadoria de R$4000.00");
+                }
+            break;
+            }
+    }
+
+    public void fazerAniversario(){
+        this.idade++;
+        System.out.println("Idade atualizada para:"+this.idade);
+    }
+
+    
+}
