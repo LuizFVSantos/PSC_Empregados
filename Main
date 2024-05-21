@@ -1,0 +1,73 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner read = new Scanner(System.in);
+        Empregado y=new Empregado("0",0,0);
+        List <Empregado> empregados = new ArrayList<>();
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Criar novo empregado");
+            System.out.println("2. Promover empregado");
+            System.out.println("3. Aumentar salário do empregado");
+            System.out.println("4. Demitir empregado");
+            System.out.println("5. Fazer aniversário do empregado");
+            System.out.println("6. Mostrar detalhes dos empregados");
+            System.out.println("7. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = read.nextInt();
+            read.nextLine();
+            switch (opcao){
+                case 1:
+                    y = new Empregado("0",0,0);
+                    System.out.println("Nome");
+                    y.setNome(read.nextLine());
+                    System.out.println("Idade");
+                    y.setIdade (read.nextInt());
+                    System.out.println("Salario");
+                    y.setSalario (read.nextDouble());
+                    empregados.add(y);
+                    System.out.println("Empregado criado com sucesso");
+                    break;
+
+                case 2:
+                    System.out.println("Nome do empregado");
+                    y=y.encEmpregado(empregados, read.nextLine());
+                    y.promover();
+                    break;
+
+                case 3:
+                    System.out.println("Digite o nome do empregado");
+                    y=y.encEmpregado(empregados, read.nextLine());
+                    System.out.println("Digite o percentual do aumento");
+                    y.aumentarSalario(read.nextDouble());
+                    break;
+
+                case 4:
+                    System.out.println("Digite o nome do empregado");
+                    y=y.encEmpregado(empregados, read.nextLine());
+                    System.out.println("1. Justa causa");
+                    System.out.println("2. Decisão do empregador");
+                    System.out.println("3. Aposentadoria");
+                    int opcao2 = read.nextInt();
+                    y.demitirEmpregado(opcao2);
+                    break;
+
+                case 5:
+                    System.out.println("Digite o nome do empregado");
+                    y=y.encEmpregado(empregados, read.nextLine());
+                    y.fazerAniversario();
+                    break;
+                case 6:
+                    System.out.println("Digite o nome do empregado");
+                    y=y.encEmpregado(empregados, read.nextLine());
+                    System.out.println(y.toString());
+                    break;
+                case 7:
+                    break;
+            default:
+            System.out.println("Invalido");
+            }
+        }
+    }
+}
